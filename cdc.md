@@ -69,10 +69,10 @@ Rouge - #de3021
 Les polices d'écriture utilisés:
 
 Titres - H1
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@700&family=Sansita+Swashed:wght@500&display=swap" rel="stylesheet">
+[Police d'écriture titre] (https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@700&family=Sansita+Swashed:wght@500&display=swap)
 
 Sous-titres - H2
-<link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500&display=swap" rel="stylesheet">
+[Police d'écriture sous-titre] (https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500&display=swap)
 
 Texte 
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Sansita+Swashed:wght@500&display=swap" rel="stylesheet">
+[Police d'écriture texte] (https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Sansita+Swashed:wght@500&display=swap)
