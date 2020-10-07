@@ -1,9 +1,8 @@
 # Documentation officiel - MyAnimeProject
 
 ## Cas d'utilisation
-Cette application permet de rechercher un anime simplement à l'aide d'une barre de recherche type "Google".
-Elle vas requêter l'api "Jikan" qui est une api mangas / animes libre service afin de réaliser des projets tel que celui-ici. 
-La recherche vas nous renvoyer des images correspondantes à l'anime ainsi qu'un synopsis (résumé) et à l'aide de liens liés aux images,
-on a accés à la page "myanimelist" de l'oeuvre qui permet d'avoir accés à des commentaires utilisateurs, une note globale etc.
+Cette application utilise l'API Jikan qui est une API utilisée par "MyAnimeList" et qui permet de rechercher des animes, mangas de tous types et de travailler sur les données reçus (auteurs, personnages, dates de parution, titres des épisodes ...) à l'aide des technologies VueJS / Axios et des langages HTML et Javascript "MyAnimeProject" permet de générer un tableau qui contiendra la liste des épisodes d'un anime ainsi qu'un lien qui donne accés à la page personnel des épisodes en question sur "MyAnimeList".
+
+Ce mini projet à pour but d'évoluer dans le futur et de permettre + de fonctionnalités.
 ## Prototypage de l'application 
 ![image](analyse/Project.png)

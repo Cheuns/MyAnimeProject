@@ -1,56 +1,59 @@
 # Cahier des charges - MyAnimeProject (Documentation Officiel)
 
-## Client (pour qui)
+## Client (pour qui)
 
 Nos clients sont des utilisateurs qui peuvent être habitués au monde du mangas et de la japanimation mais qui peuvent aussi découvrir le milieu. Ce sont des personnes du quotidient qui utilisent internet pour se divertir.
 
 ## Besoin client (que recherche le client sur mon site)
 
-1. Barre de recherche
+1. Le client a comme besoin principal de rechercher un anime à regarder et souhaiterai pouvoir avoir accés aux nombres d'épisodes ainsi qu'un synopsis, des avis utilisateurs sur l'oeuvre, un système de notation pour ce faire une première idée...
 
-Une barre de recherche type "Google" qui permet simplement de taper un nom d'anime et qui vas requêter l'api Jikan pour ressortir les informations nécessaires.
-
-2. Images et Résumé 
-
-Suite à la recherche via l'outil "search" l'accés aux donnés doit permettre d'afficher l'image ou les images correspondantes à l'anime recherché et enfin l'utilisateur doit avoir accés à un "synopsis" ou une page sur "myanimelist" qui décris l'oeuvre en question.
-
-3. Liens qui renvoient à un site officiel de streaming (ADN, Crunchyroll, Wakanim)
-
-L'application doit permettre suite à la recherche de r'envoyer sur un site diffusant l'anime en question.
+2. Un tableau qui regroupe les informations nécessaires: épisodes dans l'ordre chronologique, le titre des épisodes et un lien qui permet d'y accéder.
 
 ## Les technologies utilisés
 
-..* HTML / CSS / Javascript
-..* VueJS
-..* Axios
+HTML, CSS, Javascript / VueJS, Axios
 
 ## Dead line sur la semaine 
 
 1. Lundi
 
 Analyse du projet: 
-    ..* Mise en oeuvre du cahier des charges
-    ..* Création des users stories
+    
+    Mise en oeuvre du cahier des charges
+    Création des users stories
+
 Prototypage:
-    ..* Prototype de l'application
+    
+    Prototype de l'application - Draw.io
 
 2. Mardi
 
-Pseudo code (flowchart)
+Suite du Prototypage:
 
-Première requête API - Barre de recherche (HTML / Javascript / Axios) 
+    Pseudo code (flowchart) - Draw.io
+
+Requêtes API:
+
+    Première requête API - Barre de recherche (HTML / Javascript / Axios) 
 
 3. Mercredi
 
-Seconde requête API - Image et Résumé du mangas / anime
+Suite des Requêtes API:
+    
+    Seconde requête API - Image et Résumé du mangas / anime
 
 4. Jeudi
 
-Liens (ADN, Crunchyroll, Wakanim)
+Pagination, liens et documentation:
+
+    Liens (ADN, Crunchyroll, Wakanim)
 
 5. Vendredi matin 
 
-Feuilles de style CSS et mise en place du projet
+Design:
+
+    Feuille de style CSS et mise en place du projet
 
 ## Charte graphique (couleurs 3 max, police d'écriture ...)
 
