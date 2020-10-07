@@ -9,11 +9,10 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-
 </head>
 <body>
     <div id ="app">
-        <img v-on:click="updateAnime()" src="assets/Naruto.jpg" alt="Naruto">
+        <img v-on:click="updateAnime()" src="assets/Naruto.jpg" alt="Naruto"> <!-- Evenement on-click qui permet de lancer ma fonction pour créer le tableau d'épisodes -->
         
         <table class="table">
             <thead>
@@ -25,36 +24,40 @@
             </thead>
             <tbody v-for="anime in animes">
               <tr>
-                <th scope="row">{{ anime.episode_id }}</th>
+                <th scope="row">{{ anime.episode_id }}</th> <!-- Données stockéss dans le résultat de la requête API (épisodes, titres ...) -->
                 <td>{{ anime.title }}</td>   
-                <td><a v-bind:href="anime.video_url">Cliquez ici</a></td> 
+                <td><a v-bind:href="anime.video_url" target="_blank">Lien vers épisode</a></td>
               </tr>
             </tbody>
-        </table>
+        </table> 
+        <button v-on:click="updatePage(); a++">Page suivante</button> 
     </div> 
 
     <script>
-        let app = new Vue({
+        let app = new Vue({  // Création de mon instance vue
         el: '#app',
         data:{
-            animes: [],
+            animes: [], 
+            a: 2   // Variable pour gérer la pagination 
         },
         methods:{
-            updateAnime(){
-                axios.get(`https://api.jikan.moe/v3/anime/20/episodes`)
+            updateAnime(){   // Fonction pour créer mon tableau d'épisodes
+                axios.get(`https://api.jikan.moe/v3/anime/20/episodes`)  // Requête API Jikan pour rechercher un anime par rapport à son "ID"
                 .then(reponse => this.animes = reponse.data.episodes)
-                .catch(erreur => this.animes = [{title: "Erreur de chargement"}]);  
-            }   
+                .catch(erreur => this.animes = [{title: "Erreur de chargement"}]);
+            }, 
+            updatePage(){  // Fonction pour incrémenter le système de pagination
+                axios.get(`https://api.jikan.moe/v3/anime/20/episodes/`+this.a)
+                .then(reponse => this.animes = reponse.data.episodes)
+                .catch(erreur => this.animes = [{title: "Erreur de chargement"}]);    
+            }
         }
     });
     </script>
-
-    <style>
-
-    </style>
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
 </body>
 </html>

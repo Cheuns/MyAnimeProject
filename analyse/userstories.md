@@ -8,5 +8,5 @@ et alors lui est proposé les images correspondantes:
 * Les films correspondant si ils existent si les films existant
 * Les OAV'S (épisodes hors séries d'une meilleure qualité)
 
-Alors il peut choisir ce qu'il souhaite regarder en cliquant sur une des images et il peut accés à la page myanime correspondante avec un synopsis,
+Alors il peut choisir ce qu'il souhaite regarder en cliquant sur une des images et il peut accéder à la page MyAnimeList correspondante avec un synopsis,
 des avis utilisateurs, une note / 10 ...
