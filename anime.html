@@ -21,10 +21,10 @@
         </div>
 
         <div class="container-fluid" style="background: #1038ce;">
-            <img v-on:click="updateAnime()" src="assets/Naruto.jpg" alt="Naruto"> <!-- Evenement on-click qui permet de lancer ma fonction pour créer le tableau d'épisodes -->
-            <img v-on:click="updateAnime()" src="assets/OnePiece.jpg" alt="One Piece"> <!-- ID: 21 -->
-            <img v-on:click="updateAnime()" src="assets/DragonBallZ.jpg" alt="DragonBallZ"> <!-- ID: 813 -->
-            <img v-on:click="updateAnime()" src="assets/Bleach.jpg" alt="Bleach"> <!-- ID: 269 -->
+            <img v-on:click="restartA(),updateAnime(Naruto)" src="assets/Naruto.jpg" alt="Naruto"> <!-- Evenement on-click qui permet de lancer ma fonction pour créer le tableau d'épisodes -->
+            <img v-on:click="restartA(),updateAnime(OnePiece)" src="assets/OnePiece.jpg" alt="One Piece"> <!-- ID: 21 -->
+            <img v-on:click="restartA(),updateAnime(DragonBallZ)" src="assets/DragonBallZ.jpg" alt="DragonBallZ"> <!-- ID: 813 -->
+            <img v-on:click="restartA(),updateAnime(Bleach)" src="assets/Bleach.jpg" alt="Bleach"> <!-- ID: 269 -->
 
             <table class="table">
                 <thead style="color:#ffffff">
@@ -54,19 +54,31 @@
         el: '#app',
         data:{
             animes: [], 
-            a: 2   // Variable pour gérer la pagination 
+            a: 2, 
+            id: 0, 
+            idPage: 0,
+            Naruto: 20,
+            OnePiece: 21,
+            DragonBallZ: 813,
+            Bleach: 269,         
         },
         methods:{
-            updateAnime(){   // Fonction pour créer mon tableau d'épisodes
-                axios.get(`https://api.jikan.moe/v3/anime/20/episodes`)  // Requête API Jikan pour rechercher un anime par rapport à son "ID"
+
+           restartA(){      // Permet de refresh la valeur de "A" pour mon système de pagination au changement d'anime (id)
+                this.a = 2;        
+           },
+            updateAnime(courant){   // Fonction pour créer mon tableau d'épisodes
+                this.id = courant;
+                axios.get(`https://api.jikan.moe/v3/anime/`+courant+`/episodes`)  // Requête API Jikan pour rechercher un anime par rapport à son "ID"
                 .then(reponse => this.animes = reponse.data.episodes)
                 .catch(erreur => this.animes = [{title: "Erreur de chargement"}]);
             }, 
-            updatePage(){  // Fonction pour incrémenter le système de pagination
-                axios.get(`https://api.jikan.moe/v3/anime/20/episodes/`+this.a)
+            updatePage(id){  // Fonction pour incrémenter le système de pagination
+            
+                axios.get(`https://api.jikan.moe/v3/anime/`+this.id+`/episodes/`+this.a)
                 .then(reponse => this.animes = reponse.data.episodes)
                 .catch(erreur => this.animes = [{title: "Erreur de chargement"}]);    
-            }
+            }     
         }
     });
     </script>
