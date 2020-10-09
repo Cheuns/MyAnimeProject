@@ -12,7 +12,6 @@
 </head>
 <body>
     <div id ="app">
-
         <div class="jumbotron jumbotron-fluid" style="background: #1038ce;">
             <div class="container">
                 <h1>Bienvenue sur MyAnimeProject</h1>
@@ -21,10 +20,10 @@
         </div>
 
         <div class="container-fluid" style="background: #1038ce;">
-            <img v-on:click="restartA(),updateAnime(Naruto)" src="assets/Naruto.jpg" alt="Naruto"> <!-- Evenement on-click qui permet de lancer ma fonction pour créer le tableau d'épisodes -->
-            <img v-on:click="restartA(),updateAnime(OnePiece)" src="assets/OnePiece.jpg" alt="One Piece"> <!-- ID: 21 -->
-            <img v-on:click="restartA(),updateAnime(DragonBallZ)" src="assets/DragonBallZ.jpg" alt="DragonBallZ"> <!-- ID: 813 -->
-            <img v-on:click="restartA(),updateAnime(Bleach)" src="assets/Bleach.jpg" alt="Bleach"> <!-- ID: 269 -->
+            <img v-on:click="updateAnime(Naruto)" src="assets/Naruto.jpg" alt="Naruto"> <!-- Evenement on-click qui déclenche ma fonction pour créer le tableau d'épisodes -->
+            <img v-on:click="updateAnime(OnePiece)" src="assets/OnePiece.jpg" alt="One Piece">
+            <img v-on:click="updateAnime(DragonBallZ)" src="assets/DragonBallZ.jpg" alt="DragonBallZ">
+            <img v-on:click="updateAnime(Bleach)" src="assets/Bleach.jpg" alt="Bleach">
 
             <table class="table">
                 <thead style="color:#ffffff">
@@ -37,8 +36,8 @@
                 
                 <tbody v-for="anime in animes" style="color:#ffffff">
                     <tr>
-                        <th scope="row">{{ anime.episode_id }}</th> <!-- Données stockéss dans le résultat de la requête API (épisodes, titres ...) -->
-                        <td>{{ anime.title }}</td>   
+                        <th scope="row">{{ anime.episode_id }}</th> <!-- Données stockées dans le résultat de la requête API (ID des épisodes) -->
+                        <td>{{ anime.title }}</td>   <!-- Titres générés par la requête -->
                         <td><a v-bind:href="anime.video_url" target="_blank" style="color:#de3021">Lien vers épisode</a></td>
                     </tr>
                 </tbody>
@@ -51,30 +50,25 @@
 
     <script>
         let app = new Vue({  // Création de mon instance vue
-        el: '#app',
-        data:{
-            animes: [], 
-            a: 2, 
-            id: 0, 
-            idPage: 0,
-            Naruto: 20,
-            OnePiece: 21,
-            DragonBallZ: 813,
-            Bleach: 269,         
+            el: '#app',
+            data:{
+                animes: [], 
+                a: 2,   // Utilisé pour le système de Pagination
+                id: 0,  // Utilisé pour générer l'id d'un épisode dans ma requête
+                Naruto: 20,
+                OnePiece: 21,
+                DragonBallZ: 813,
+                Bleach: 269,         
         },
         methods:{
-
-           restartA(){      // Permet de refresh la valeur de "A" pour mon système de pagination au changement d'anime (id)
-                this.a = 2;        
-           },
             updateAnime(courant){   // Fonction pour créer mon tableau d'épisodes
                 this.id = courant;
-                axios.get(`https://api.jikan.moe/v3/anime/`+courant+`/episodes`)  // Requête API Jikan pour rechercher un anime par rapport à son "ID"
+                this.a = 2; // Permet de réinitialiser la valeur de "a" au déclenchement de la fonction updateAnime()
+                axios.get(`https://api.jikan.moe/v3/anime/`+courant+`/episodes`)  // Requête API "Jikan" utilisée pour l'application
                 .then(reponse => this.animes = reponse.data.episodes)
                 .catch(erreur => this.animes = [{title: "Erreur de chargement"}]);
             }, 
-            updatePage(id){  // Fonction pour incrémenter le système de pagination
-            
+            updatePage(id){  // Fonction pour incrémenter le système de pagination 
                 axios.get(`https://api.jikan.moe/v3/anime/`+this.id+`/episodes/`+this.a)
                 .then(reponse => this.animes = reponse.data.episodes)
                 .catch(erreur => this.animes = [{title: "Erreur de chargement"}]);    
@@ -85,8 +79,8 @@
 
     <style>
         h1 {
-           font-family: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@700&family=Sansita+Swashed:wght@500&display=swap";
-           color: #ffffff;
+            font-family: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@700&family=Sansita+Swashed:wght@500&display=swap";
+            color: #ffffff;
         }
         p {
             font-family: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Sansita+Swashed:wght@500&display=swap";
