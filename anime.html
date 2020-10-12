@@ -20,10 +20,10 @@
         </div>
 
         <div class="container-fluid" style="background: #1038ce;">
-            <img v-on:click="updateAnime(Naruto)" src="assets/Naruto.jpg" alt="Naruto"> <!-- Evenement on-click qui déclenche ma fonction pour créer le tableau d'épisodes -->
-            <img v-on:click="updateAnime(OnePiece)" src="assets/OnePiece.jpg" alt="One Piece">
-            <img v-on:click="updateAnime(DragonBallZ)" src="assets/DragonBallZ.jpg" alt="DragonBallZ">
-            <img v-on:click="updateAnime(Bleach)" src="assets/Bleach.jpg" alt="Bleach">
+            <img v-on:click="updateAnime(manga.Naruto)" src="assets/Naruto.jpg" alt="Naruto"> <!-- Evenement on-click qui déclenche ma fonction pour créer le tableau d'épisodes -->
+            <img v-on:click="updateAnime(manga.OnePiece)" src="assets/OnePiece.jpg" alt="One Piece">
+            <img v-on:click="updateAnime(manga.DragonBallZ)" src="assets/DragonBallZ.jpg" alt="DragonBallZ">
+            <img v-on:click="updateAnime(manga.Bleach)" src="assets/Bleach.jpg" alt="Bleach">
 
             <table class="table">
                 <thead style="color:#ffffff">
@@ -54,15 +54,15 @@
             data:{
                 animes: [], 
                 a: 2,   // Utilisé pour le système de Pagination
-                id: 0,  // Utilisé pour générer l'id d'un épisode dans ma requête
-                Naruto: 20,
-                OnePiece: 21,
-                DragonBallZ: 813,
-                Bleach: 269,         
+                manga: {
+                    Naruto : 20,
+                    OnePiece : 21,
+                    DragonBallZ : 813,
+                    Bleach : 269
+                }      
         },
         methods:{
             updateAnime(courant){   // Fonction pour créer mon tableau d'épisodes
-                this.id = courant;
                 this.a = 2; // Permet de réinitialiser la valeur de "a" au déclenchement de la fonction updateAnime()
                 axios.get(`https://api.jikan.moe/v3/anime/`+courant+`/episodes`)  // Requête API "Jikan" utilisée pour l'application
                 .then(reponse => this.animes = reponse.data.episodes)
